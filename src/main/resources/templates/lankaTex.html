@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LankaText</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --fg:#1f2937; /* dark gray for text */
+      --muted:#6b7280; /* medium gray */
+      --accent:#2563eb; /* light blue highlight */
+      --accent-2:#38bdf8; /* lighter sky blue for badges */
+      --surface:#f3f4f6; /* light gray background */
+      --border:#d1d5db; /* gray border */
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Header */
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--border)}
+    .container{max-width:1180px;margin:0 auto;padding:0 20px}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+    .brand{font-weight:800;font-size:28px;letter-spacing:.2px;color:var(--accent)}
+    .navlinks{display:flex;gap:28px;align-items:center}
+    .navlinks a{font-weight:600;color:var(--fg)}
+    .navlinks a:hover{color:var(--accent)}
+    .util{display:flex;gap:18px;align-items:center}
+    .search{display:flex;align-items:center;gap:8px;border-bottom:2px solid var(--border);padding:6px 0}
+    .search input{border:0;outline:0;background:transparent;font:inherit;width:160px;color:var(--fg)}
+
+    /* Hero */
+    .hero{padding:40px 0 10px;background:var(--surface)}
+    .tagline{font-size:20px;font-weight:600;color:var(--accent)}
+
+    /* Products */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;padding:20px 0 60px}
+    .card{position:relative;background:var(--bg);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.06)}
+    .card img{aspect-ratio:3/4;object-fit:cover}
+    .badge{position:absolute;top:12px;left:12px;background:var(--accent-2);color:white;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700}
+    .card-body{padding:16px}
+    .title{font-weight:600;margin:0 0 4px;color:var(--fg)}
+    .price{color:var(--muted);font-weight:600}
+
+    /* About */
+    .about{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:54px 0}
+    .about h2{font-size:36px;margin:0 0 10px;text-align:center;color:var(--accent)}
+    .about p{max-width:900px;margin:10px auto;font-size:18px;line-height:1.8;color:var(--fg)}
+
+    /* Footer */
+    .footer{background:#1f2937;color:#e5e7eb;margin-top:0}
+    .footer .container{padding:40px 20px}
+    .footgrid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px}
+    .footer h4{margin:0 0 12px;color:var(--accent-2)}
+    .footer a{color:#e5e7eb;opacity:.9}
+    .footer a:hover{color:var(--accent-2)}
+    .footer ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+    .copy{border-top:1px solid rgba(255,255,255,.1);margin-top:24px;padding-top:16px;font-size:14px;color:#cbd5e1}
+
+    /* Utilities */
+    .icon{width:18px;height:18px;display:inline-block}
+    .flex{display:flex;align-items:center;gap:8px}
+
+    /* Responsive */
+    @media (max-width:1024px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .footgrid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:700px){
+      .navlinks{display:none}
+      .search input{width:110px}
+      .hero{padding-top:24px}
+      .grid{grid-template-columns:1fr}
+      .about p{padding:0 4px}
+      .footgrid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+<!--<div th:replace="fragments/header :: dashboardHeader"></div>-->
+<header class="topbar">
+  <div class="container nav">
+    <div class="brand">
+      <a href="http://localhost:8080" style="color: inherit; text-decoration: none;">LankaTex</a>
+    </div>
+    <nav class="navlinks" aria-label="Main Navigation">
+      <a href="#shop">Shop</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+      <a href="#gift">Gift Card</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="util">
+      <label class="search" aria-label="Site search">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="search" placeholder="Search" />
+      </label>
+<!--      <a href="/login" class="flex" title="Login" aria-label="Login">-->
+<!--        <button style="padding: 10px 20px; background: var(--accent); color: white; border-radius: 4px; font-weight: 600;">Login</button>-->
+<!--      </a>-->
+
+            <a href="login" class="flex" title="login" aria-label="login">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a href="#cart" class="flex" title="Cart" aria-label="Cart">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 12.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Products -->
+  <section id="shop">
+    <div class="container">
+      <div class="grid">
+        <!-- Product 1 -->
+<!--        <a href="/product-page-1" class="card-link">-->
+<!--          <article class="card">-->
+<!--            <span class="badge">Top Sellers</span>-->
+<!--            <img alt="Tote with tiger pattern" src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop" />-->
+<!--            <div class="card-body">-->
+<!--              <h3 class="title">Tote with Tiger Pattern</h3>-->
+<!--              <div class="price">$29.00</div>-->
+<!--            </div>-->
+<!--          </article>-->
+<!--        </a>-->
+        <div class="card">
+          <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%">
+          <h1>Tailored Jeans</h1>
+          <p class="price">$19.99</p>
+          <p>Some text about the jeans..</p>
+          <p><button>Details</button></p>
+        </div>
+
+        <!-- Product 2 -->
+        <a href="/product-page-2" class="card-link">
+          <article class="card">
+            <span class="badge">Top Sellers</span>
+            <img alt="Tote with swimmers pattern" src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=1200&auto=format&fit=crop" />
+            <div class="card-body">
+              <h3 class="title">Tote with Swimmers Pattern</h3>
+              <div class="price">$29.00</div>
+            </div>
+          </article>
+        </a>
+
+        <!-- Product 3 -->
+        <a href="/product-page-3" class="card-link">
+          <article class="card">
+            <span class="badge">Top Sellers</span>
+            <img alt="Tote with abstract orange pattern" src="https://images.unsplash.com/photo-1520975922284-8b456906c813?q=80&w=1200&auto=format&fit=crop" />
+            <div class="card-body">
+              <h3 class="title">Tote with Abstract Orange Pattern</h3>
+              <div class="price">$29.00</div>
+            </div>
+          </article>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About</h2>
+      <p>
+        Welcome to Lanka Text Garment, established in 1990. Located at No 01, New Kandy Road, Malabe, we pride ourselves on delivering high‑quality textile solutions with a commitment to excellence. Thank you for choosing us as your trusted partner in the garment industry.
+      </p>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footgrid">
+      <div>
+        <h4>Shipping & Store</h4>
+        <ul>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Store Policy</a></li>
+          <li><a href="#">Payment Methods</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>Tel: 123‑456‑7890</li>
+          <li><a href="mailto:info@mysite.com">info@mysite.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">© <span id="year"></span> LankaTex. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
